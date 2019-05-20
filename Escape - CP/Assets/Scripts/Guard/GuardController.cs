@@ -10,6 +10,12 @@ public class GuardController : MonoBehaviour
     public float viewDistance;          // Distancia de visión
     public float startTimeBtwShots;
     public GameObject projectile;
+    public float viewRadius;
+    [Range(0,360)]
+    public float viewAngle;
+
+    public LayerMask playerMask;
+    public LayerMask obstacleMask;
 
     private Transform player;
     private float timeBtwShots, tempSpeed;
@@ -21,11 +27,10 @@ public class GuardController : MonoBehaviour
         timeBtwShots = startTimeBtwShots;
     }
     
-
     void Update()
     {
         // SE HARÍA AQUÍ LA COMPROBACIÓN DEL CAMPO DE VISIÓN
-        if(Vector3.Distance(transform.position, player.position) < viewDistance)
+        if(FindVisiblePlayer())
         {
             //ESTÁ A LA VISTA
             transform.LookAt(player);
@@ -61,5 +66,38 @@ public class GuardController : MonoBehaviour
             Debug.Log("Patrulla");
             transform.position = this.transform.position;
         }
+    }
+
+    private bool FindVisiblePlayer()
+    {
+        float dstToTarget = Vector3.Distance(transform.position, player.position);
+        if (dstToTarget < viewRadius)
+        {
+            // El jugador está en el radio de visión/audición
+            Vector3 dirToTarget = (player.position - transform.position).normalized;
+            if(Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+            {
+                // El jugador está en el ángulo de visión
+                if(!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                {
+                    // No hay obstáculos de por medio y por eso ve
+                    return true;
+                }
+            }
+            return false;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    {
+        if (!angleIsGlobal)
+        {
+            angleInDegrees += transform.eulerAngles.y;
+        }
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }
