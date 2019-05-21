@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor (typeof (GuardController))]
+[CustomEditor (typeof (GuardMovement))]
 public class FOVEditor : Editor
 {
     private void OnSceneGUI()
     {
-        GuardController gc = (GuardController)target;
+        GuardMovement gm = (GuardMovement)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(gc.transform.position, Vector3.up, Vector3.forward, 360, gc.viewRadius);
-        Vector3 viewAngleA = gc.DirFromAngle(-gc.viewAngle / 2, false);
-        Vector3 viewAngleB = gc.DirFromAngle(gc.viewAngle / 2, false);
+        Handles.DrawWireArc(gm.transform.position, Vector3.up, Vector3.forward, 360, gm.viewRadius);
+        Vector3 viewAngleA = gm.DirFromAngle(-gm.viewAngle / 2, false);
+        Vector3 viewAngleB = gm.DirFromAngle(gm.viewAngle / 2, false);
 
-        Handles.DrawLine(gc.transform.position, gc.transform.position + viewAngleA * gc.viewRadius);
-        Handles.DrawLine(gc.transform.position, gc.transform.position + viewAngleB * gc.viewRadius);
+        Handles.DrawLine(gm.transform.position, gm.transform.position + viewAngleA * gm.viewRadius);
+        Handles.DrawLine(gm.transform.position, gm.transform.position + viewAngleB * gm.viewRadius);
     }
 }

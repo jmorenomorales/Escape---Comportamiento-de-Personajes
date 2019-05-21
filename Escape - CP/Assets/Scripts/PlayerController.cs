@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float playerSpeed = 4, rotSpeed = 100f;
+    public Vector3 playerPos;
     
     // Start is called before the first frame update
     void Start()
@@ -49,5 +50,10 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
         }
+    }
+
+    public Vector3 GetPlayerPos()
+    {
+        return transform.position;
     }
 }
