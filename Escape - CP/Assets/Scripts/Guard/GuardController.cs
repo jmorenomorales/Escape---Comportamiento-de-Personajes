@@ -57,7 +57,8 @@ public class GuardController : MonoBehaviour
 
             if (timeBtwShots <= 0)
             {
-                Instantiate(projectile, transform.position, Quaternion.identity);
+                GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
+                bullet.GetComponent<Rigidbody>().AddForce((transform.forward) * 1000);
                 timeBtwShots = startTimeBtwShots;
             }
             else

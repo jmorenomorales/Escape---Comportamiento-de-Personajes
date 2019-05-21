@@ -11,7 +11,7 @@ public class FOVEditor : Editor
         GuardController gc = (GuardController)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(gc.transform.position, Vector3.up, Vector3.forward, 360, gc.viewRadius);
-        Vector3 viewAngleA = gc.DirFromAngle(-gc.viewAngle/2, false);
+        Vector3 viewAngleA = gc.DirFromAngle(-gc.viewAngle / 2, false);
         Vector3 viewAngleB = gc.DirFromAngle(gc.viewAngle / 2, false);
 
         Handles.DrawLine(gc.transform.position, gc.transform.position + viewAngleA * gc.viewRadius);
