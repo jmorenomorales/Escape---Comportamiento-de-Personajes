@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GuardController : MonoBehaviour
 {
     public float speed;                 // Velocidad a la que el enemigo avanza
     public float stoppingDistance;      // Medida a la que el enemigo para
     public float retreatDistance;       // Medida en la que el enemigo se echa para atrás
-    public float viewDistance;          // Distancia de visión
     public float startTimeBtwShots;
     public GameObject projectile;
     public float viewRadius;
+    public float wanderRadius;
+    public float wanderTimer;
     [Range(0,360)]
     public float viewAngle;
 
@@ -18,13 +20,16 @@ public class GuardController : MonoBehaviour
     public LayerMask obstacleMask;
 
     private Transform player;
-    private float timeBtwShots, tempSpeed;
+    private float timeBtwShots, tempSpeed, timer;
+    private NavMeshAgent agent;
 
     void Start()
     {
         player = PlayerSingleton.instance.player.transform;
 
         timeBtwShots = startTimeBtwShots;
+        agent = GetComponent<NavMeshAgent>();
+        timer = wanderTimer;
     }
     
     void Update()
@@ -46,7 +51,7 @@ public class GuardController : MonoBehaviour
             }
             else if (Vector3.Distance(transform.position, player.position) < retreatDistance)
             {
-                tempSpeed = 10;
+                tempSpeed = 20;
                 transform.position = Vector3.MoveTowards(transform.position, player.position, -tempSpeed * Time.deltaTime);
             }
 
@@ -61,10 +66,16 @@ public class GuardController : MonoBehaviour
             }
         }
         else
-        {
-            //FUERA DE ALCANCE - PATRULLA
-            Debug.Log("Patrulla");
-            transform.position = this.transform.position;
+        {   
+            // ESTADO PATRULLA
+            timer += Time.deltaTime;
+
+            if (timer >= wanderTimer)
+            {
+                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+                agent.SetDestination(newPos);
+                timer = 0;
+            }
         }
     }
 
@@ -99,5 +110,18 @@ public class GuardController : MonoBehaviour
             angleInDegrees += transform.eulerAngles.y;
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+
+        randDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+
+        return navHit.position;
     }
 }

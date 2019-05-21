@@ -22,7 +22,6 @@ public class Projectile : MonoBehaviour
 
         if (transform.position.x == target.x && transform.position.y == target.y && transform.position.z == target.z)
         {
-            Debug.Log("Qué suerte");
             DestroyProjectile();
         }
     }
@@ -31,7 +30,6 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Te di");
             DestroyProjectile();
         }
     }
