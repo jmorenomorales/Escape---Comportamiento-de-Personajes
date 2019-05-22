@@ -28,7 +28,7 @@ public class GuardMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
     }
-    
+
     public bool FindVisiblePlayer(Transform player)
     {
         float dstToTarget = Vector3.Distance(transform.position, player.position);

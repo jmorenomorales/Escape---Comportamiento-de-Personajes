@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(TurretController))]
+[CustomEditor(typeof(TurretMovement))]
 public class FOVEditorTurret : Editor
 {
     private void OnSceneGUI()
     {
-        TurretController tc = (TurretController)target;
+        TurretMovement tm = (TurretMovement)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(tc.transform.position, Vector3.up, Vector3.forward, 360, tc.viewRadius);
-        Vector3 viewAngleA = tc.DirFromAngle(-tc.viewAngle / 2, false);
-        Vector3 viewAngleB = tc.DirFromAngle(tc.viewAngle / 2, false);
+        Handles.DrawWireArc(tm.transform.position, Vector3.up, Vector3.forward, 360, tm.viewRadius);
+        Vector3 viewAngleA = tm.DirFromAngle(-tm.viewAngle / 2, false);
+        Vector3 viewAngleB = tm.DirFromAngle(tm.viewAngle / 2, false);
 
-        Handles.DrawLine(tc.transform.position, tc.transform.position + viewAngleA * tc.viewRadius);
-        Handles.DrawLine(tc.transform.position, tc.transform.position + viewAngleB * tc.viewRadius);
+        Handles.DrawLine(tm.transform.position, tm.transform.position + viewAngleA * tm.viewRadius);
+        Handles.DrawLine(tm.transform.position, tm.transform.position + viewAngleB * tm.viewRadius);
     }
 }

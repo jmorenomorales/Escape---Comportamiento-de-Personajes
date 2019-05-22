@@ -32,7 +32,6 @@ public class GuardController : MonoBehaviour
         switch (state)
         {
             case TState.WANDERING:
-                Debug.Log(state);
                 if (guardMovement.FindVisiblePlayer(player))
                 {
                     state = TState.PLAYER_APPROACH;
@@ -45,7 +44,6 @@ public class GuardController : MonoBehaviour
                 break;
 
             case TState.PLAYER_APPROACH:
-                Debug.Log(state);
                 guardMovement.Shoot(player);
                 if (!guardMovement.INeedApproach(player))
                 {
@@ -64,7 +62,6 @@ public class GuardController : MonoBehaviour
                 break;
 
             case TState.KEEP_DISTANCE_PLAYER:
-                Debug.Log(state);
                 guardMovement.Shoot(player);
                 if (guardMovement.INeedApproach(player))
                 {
@@ -79,7 +76,6 @@ public class GuardController : MonoBehaviour
                 break;
 
             case TState.GO_BACK_PLAYER:
-                Debug.Log(state);
                 guardMovement.Shoot(player);
                 if (guardMovement.IAmAtGoodDistance(player))
                 {
