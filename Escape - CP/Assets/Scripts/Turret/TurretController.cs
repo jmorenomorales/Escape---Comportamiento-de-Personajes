@@ -30,7 +30,7 @@ public class TurretController : MonoBehaviour
         switch (state)
         {
             case TState.OFF:
-                Debug.Log(state);
+                //Debug.Log(state);
                 if (turretMovement.PlayerIsAudible(player))
                 {
                     state = TState.ROTATING;
@@ -42,7 +42,7 @@ public class TurretController : MonoBehaviour
                 }
                 break;
             case TState.ROTATING:
-                Debug.Log(state);
+                //Debug.Log(state);
                 if (turretMovement.FindVisiblePlayer(player))
                 {
                     state = TState.SHOOTING;
@@ -59,7 +59,7 @@ public class TurretController : MonoBehaviour
                 }
                 break;
             case TState.SHOOTING:
-                Debug.Log(state);
+                //Debug.Log(state);
                 if (!turretMovement.FindVisiblePlayer(player))
                 {
                     state = TState.ROTATING;
