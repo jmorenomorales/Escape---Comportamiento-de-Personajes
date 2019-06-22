@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float playerSpeed = 4, rotSpeed = 100f, life = 1000f;
+    public float playerSpeed = 8, rotSpeed = 250f, life = 1000f;
     public Vector3 playerPos;
 
     private Renderer playerRenderer;
@@ -38,11 +38,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            playerSpeed = 7;
+            playerSpeed = 12;
         }
         else
         {
-            playerSpeed = 4;
+            playerSpeed = 8;
         }
 
         if (Input.GetKey(KeyCode.Q))
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
         if(life <= 0f)
         {
-            SceneManager.LoadScene("Simulation");
+            SceneManager.LoadScene("Final Simulation");
         }
     }
 
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     public void AttackImpact()
     {
-        life = life - 2.5f;
+        life = life - 5f;
         UpdateColor();
     }
 

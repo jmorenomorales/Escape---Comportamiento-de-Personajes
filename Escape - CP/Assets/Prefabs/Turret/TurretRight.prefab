@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1396359394}
   - component: {fileID: 1396359400}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: TurretRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396359393}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.72, y: 1, z: 16.86}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &1396359396
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ Animator:
   m_GameObject: {fileID: 1396359393}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a60f03fc04ce47149a52f0c5289dae9f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 71a85b909710e044b985c54332fef624, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   viewRadius: 7
   viewAngle: 90
   listeningRadius: 20
-  startTimeBtwShots: 1
+  startTimeBtwShots: 0.5
   projectile: {fileID: 7153832383815487391, guid: b765235d2de6286488c95682b68a4208,
     type: 3}
   playerMask:

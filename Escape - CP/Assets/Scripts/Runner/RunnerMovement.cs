@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class RunnerMovement : MonoBehaviour
 {
     public int steps;
-    public int speed;
+    public int wanderSpeed;
+    public int chaseSpeed;
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
@@ -23,6 +24,7 @@ public class RunnerMovement : MonoBehaviour
         endPos = transform.position + transform.forward * steps;
 
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = 10;
     }
 
     public bool FindVisiblePlayer(Transform player)
@@ -58,7 +60,7 @@ public class RunnerMovement : MonoBehaviour
     {
         // Moverse a la posición del jugador
         transform.LookAt(player);
-        transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
     }
 
     public void GoStartingPos()
