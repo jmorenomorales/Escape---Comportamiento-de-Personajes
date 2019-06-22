@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float playerSpeed = 8, rotSpeed = 250f, life = 1000f;
+    public float playerSpeed = 8, shiftSpeed = 12, rotSpeed = 250f, life = 1000f;
     public Vector3 playerPos;
 
     private Renderer playerRenderer;
@@ -82,6 +82,5 @@ public class PlayerController : MonoBehaviour
         Color lerpedColor;
         lerpedColor = Color.Lerp(Color.red, Color.green, life/1000);
         playerRenderer.material.SetColor("_Color", lerpedColor);
-        Debug.Log(lerpedColor);
     }
 }

@@ -31,7 +31,6 @@ public class RunnerController : MonoBehaviour
         switch (state)
         {
             case TState.GO_FINALPOS:
-                //Debug.Log(state);
                 if (runnerMovement.FindVisiblePlayer(player) || runnerMovement.PlayerIsAudible(player))
                 {
                     state = TState.CHASE;
@@ -48,7 +47,6 @@ public class RunnerController : MonoBehaviour
                 }
                 break;
             case TState.CHASE:
-                //Debug.Log(state);
                 if (runnerMovement.IsInAttackRange(player))
                 {
                     state = TState.ATTACK;
@@ -65,7 +63,6 @@ public class RunnerController : MonoBehaviour
                 }
                 break;
             case TState.ATTACK:
-                //Debug.Log(state);
                 if (!runnerMovement.IsInAttackRange(player) && (runnerMovement.FindVisiblePlayer(player) || runnerMovement.PlayerIsAudible(player)))
                 {
                     state = TState.CHASE;
@@ -83,7 +80,6 @@ public class RunnerController : MonoBehaviour
                 }
                 break;
             case TState.GO_STARTINGPOS:
-                //Debug.Log(state);
                 if (runnerMovement.FindVisiblePlayer(player) || runnerMovement.PlayerIsAudible(player))
                 {
                     state = TState.CHASE;

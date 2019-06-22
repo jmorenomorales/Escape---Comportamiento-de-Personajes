@@ -24,7 +24,7 @@ public class RunnerMovement : MonoBehaviour
         endPos = transform.position + transform.forward * steps;
 
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = 10;
+        //agent.speed = 10;
     }
 
     public bool FindVisiblePlayer(Transform player)
@@ -60,16 +60,20 @@ public class RunnerMovement : MonoBehaviour
     {
         // Moverse a la posición del jugador
         transform.LookAt(player);
+        Debug.Log("Le estoy persiguiendo");
+        Debug.Log(player.position);
         transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
     }
 
     public void GoStartingPos()
     {
+        //transform.position = Vector3.MoveTowards(transform.position, startingPos, 10 * Time.deltaTime);
         agent.SetDestination(startingPos);
     }
 
     public void GoFinalPos()
     {
+        //transform.position = Vector3.MoveTowards(transform.position, endPos, 10 * Time.deltaTime);
         agent.SetDestination(endPos);
     }
 
